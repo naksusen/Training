@@ -12,6 +12,12 @@
 
 </head>
 <body>
+    <form method="POST" action="/logout" style="position: absolute; top: 20px; right: 20px;">
+        <?php echo csrf_field(); ?>
+        <button type="submit" style="padding: 8px 16px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+            Log Out
+        </button>
+    </form>
     <div class="original">
         <div class="mask-group">
             <div class="amaia-2"></div>
