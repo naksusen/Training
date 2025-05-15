@@ -51,10 +51,10 @@
                                     @endif
                                 </div>
                                 <div class="d-grid mx-auto">
-                                    <button type="submit" class="btn btn-dark btn-block mx-auto d-block">Sign in</button>
+                                    <button type="submit" class="btn btn-dark btn-block mx-auto d-block" style="background-color: #00897b; border-color: #00897b;">Sign in</button>
                                 </div>
                                 <div class="text-center w-100 mt-4">
-                                    <p class="mb-0 text-white" style="white-space: nowrap;">Don't have an account yet? <a href="{{ route('register') }}" class="text-decoration-none">Sign Up</a></p>
+                                    <p class="mb-0 text-white" style="white-space: nowrap;">Don't have an account yet? <a href="{{ route('register') }}" class="text-decoration-none" style="color: #00897b;">Sign Up</a></p>
                                 </div>
                             </form>
                         </div>

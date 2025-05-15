@@ -14,14 +14,66 @@
             white-space: nowrap;
             animation: typing 1.5s steps(7);
         }
+        .custom-success-modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeIn 0.5s;
+        }
+        .custom-success-modal-content {
+            background: #43a047;
+            color: #fff;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            text-align: center;
+            font-size: 1.3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .custom-success-check {
+            font-size: 2.5rem;
+            background: #fff;
+            color: #43a047;
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+        .custom-success-alert {
+            display: none;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; }
+        }
     </style>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-5">
                     @if(session()->has('success'))
-                        <div class="alert alert-success">
-                            {{ session()->get('success') }}
+                        <div class="custom-success-modal" id="success-modal">
+                            <div class="custom-success-modal-content">
+                                <span class="custom-success-check">&#10003;</span>
+                                <div>{{ session()->get('success') }}</div>
+                            </div>
                         </div>
+                        <script>
+                            setTimeout(function() {
+                                window.location.href = "{{ route('login') }}";
+                            }, 2500); 
+                        </script>
                     @endif
                     @if(session()->has('error'))
                         <div class="alert alert-danger">
@@ -72,10 +124,10 @@
                                     @endif
                                 </div>
                                 <div class="d-grid mx-auto">
-                                    <button type="submit" class="btn btn-dark btn-block">Sign up</button>
+                                    <button type="submit" class="btn btn-dark btn-block" style="background-color: #00897b; border-color: #00897b;">Sign up</button>
                                 </div>
                                 <div class="text-center mb-3" style="margin-top: 4rem;">
-                                    <p class="mb-0 text-white">Already have an account? <a href="{{ route('login') }}" class="text-decoration-none">Sign In</a></p>
+                                    <p class="mb-0 text-white">Already have an account? <a href="{{ route('login') }}" class="text-decoration-none" style="color: #00897b;">Sign In</a></p>
                                 </div>
                             </form>
                         </div>

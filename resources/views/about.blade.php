@@ -4,54 +4,75 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property List</title>
+    <title>About Us - MatchHome</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
     <style>
         body {
-            background: #0e1f41 !important;
+            background-color: #ffffff;
         }
-        .side-menu ul li a {
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .side-menu ul li a:hover {
-            color: #00897b;
-            transform: translateX(10px);
-        }
-        
-        .side-menu ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #00897b;
-            transition: width 0.3s ease;
-        }
-        
-        .side-menu ul li a:hover::after {
+        /* Add styles for no-scroll */
+        body.no-scroll {
+            overflow: hidden;
+            position: fixed;
             width: 100%;
+            height: 100%;
         }
-        .logout-btn {
-            background-color: #00897b;
-            color: #fff;
-            border: none;
-            padding: 10px 30px;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-family: 'Montserrat', sans-serif;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.3s, color 0.3s;
+        .about-container {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 20px;
         }
-        .logout-btn:hover {
-            background-color: #00695c;
-            color: #e0f2f1;
+        .about-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .about-header h1 {
+            font-size: 2.5rem;
+            color: #00897b;
+            margin-bottom: 20px;
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+        .about-image {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .mission-vision {
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .mission-box, .vision-box {
+            background: #f5f5f5;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .mission-box h2, .vision-box h2 {
+            color: #00897b;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            .about-content, .mission-vision {
+                grid-template-columns: 1fr;
+            }
+            .about-container {
+                margin: 60px auto;
+            }
         }
         html, body {
             max-width: 100vw;
@@ -70,12 +91,21 @@
         html::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
             background: #e0f2f1;
         }
-
-        body.no-scroll {
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
+        .logout-btn {
+            background-color: #00897b;
+            color: #fff;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+        .logout-btn:hover {
+            background-color: #00695c;
+            color: #e0f2f1;
         }
     </style>
 </head>
@@ -102,6 +132,8 @@
         <form method="POST" action="/logout" style="margin-top: 30px; text-align: center;">
             @csrf
             <button type="submit" class="logout-btn" style="width: 80%; display: inline-block;">
+                <!-- Optional: Add an icon before the text -->
+                <!-- <span style="margin-right:8px;">&#x1F511;</span> -->
                 Log out
             </button>
         </form>
@@ -113,43 +145,37 @@
             <span></span>
         </div>
         <div class="header-title">
-            <span class="main-title">Amaia Scapes Laguna</span><br>
-            <span class="subtitle">PROPERTY LIST</span>
+            <span class="main-title">About Us</span><br>
+            <span class="subtitle">MATCHHOME</span>
         </div>
     </div>
-    <div class="page-container">
-        <div class="main-content">
-            @for ($i = 0; $i < 6; $i++)
-            <div class="property-card">
-                <div class="card-header">
-                    <div>Property Type</div>
-                    <div>Model</div>
-                    <div>Location</div>
-                    <div>Area</div>
-                    <div>Price</div>
-                    <div>Availability</div>
-                </div>
-                <div class="card-details">
-                    <div>Amaia Laguna</div>
-                    <div>Amaia Lands</div>
-                    <div>Laguna</div>
-                    <div>50sqm</div>
-                    <div>2.2 M</div>
-                    <div class="ready-for-occupancy-2">Ready for Occupancy</div>
-                </div>
-                <div class="action-bar">
-                    <a href="https://www.google.com/maps?q=14.200249003936927,121.11197845300458" target="_blank" class="map-link">
-                        <img src="{{ asset('vectors/vector_1_x2.svg') }}" alt="Map Icon" />
-                        View Property Map
-                    </a>
-                    <a href="https://matchhome.ph/listings/estonia-1720429920" target="_blank" class="details-btn">
-                        View Property Full Details
-                    </a>
-                </div>
+
+    <div class="about-container">
+        <div class="about-header">
+            <h1>Welcome to MatchHome</h1>
+            <p>Your trusted partner in finding your dream property</p>
+        </div>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <p>MatchHome is a premier real estate platform dedicated to helping you find your perfect property match. With years of experience in the real estate industry, we've built a reputation for excellence, transparency, and customer satisfaction.</p>
+                <p>Our platform connects property seekers with their ideal homes, offering a wide range of properties from residential to commercial spaces. We pride ourselves on our comprehensive property listings, detailed information, and professional service.</p>
             </div>
-            @endfor
+            <img src="{{ asset('images/key-visual.webp') }}" alt="MatchHome Office" class="about-image">
+        </div>
+
+        <div class="mission-vision">
+            <div class="mission-box">
+                <h2>Our Mission</h2>
+                <p>To simplify the property search process and help people find their perfect home match through innovative technology and personalized service.</p>
+            </div>
+            <div class="vision-box">
+                <h2>Our Vision</h2>
+                <p>To become the most trusted and comprehensive real estate platform, transforming how people find and experience their dream properties.</p>
+            </div>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var hamburger = document.querySelector('.hamburger-menu');
@@ -207,7 +233,7 @@
                 updateHeaderMargin();
             });
 
-            // avatar upload logic
+            // Avatar upload logic
             var avatarImg = document.getElementById('profile-avatar');
             var avatarInput = document.getElementById('avatar-upload');
             if (avatarImg && avatarInput) {
@@ -227,4 +253,4 @@
         });
     </script>
 </body>
-</html>
+</html> 

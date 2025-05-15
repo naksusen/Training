@@ -4,38 +4,103 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property List</title>
+    <title>Contact Us - MatchHome</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
     <style>
         body {
-            background: #0e1f41 !important;
+            background: #fff !important;
         }
-        .side-menu ul li a {
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .side-menu ul li a:hover {
-            color: #00897b;
-            transform: translateX(10px);
-        }
-        
-        .side-menu ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #00897b;
-            transition: width 0.3s ease;
-        }
-        
-        .side-menu ul li a:hover::after {
+        /* Add styles for no-scroll */
+        body.no-scroll {
+            overflow: hidden;
+            position: fixed;
             width: 100%;
+            height: 100%;
+        }
+        .contact-container {
+            max-width: 800px;
+            margin: 120px auto 40px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .contact-title {
+            color: #0e1f41;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 800;
+        }
+        .contact-form {
+            display: grid;
+            gap: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .form-group label {
+            color: #0e1f41;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #00897b;
+            outline: none;
+        }
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        .submit-btn {
+            background-color: #00897b;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background-color: #00695c;
+        }
+        .contact-info {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+        .contact-info h3 {
+            color: #0e1f41;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        .contact-info p {
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact-info i {
+            color: #00897b;
         }
         .logout-btn {
             background-color: #00897b;
@@ -52,30 +117,6 @@
         .logout-btn:hover {
             background-color: #00695c;
             color: #e0f2f1;
-        }
-        html, body {
-            max-width: 100vw;
-            overflow-x: hidden;
-            scrollbar-width: thin;
-            scrollbar-color: #00897b #e0f2f1;
-        }
-        html::-webkit-scrollbar, body::-webkit-scrollbar {
-            width: 10px;
-            background: #e0f2f1;
-        }
-        html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
-            background: #00897b;
-            border-radius: 6px;
-        }
-        html::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
-            background: #e0f2f1;
-        }
-
-        body.no-scroll {
-            overflow: hidden;
-            position: fixed;
-            width: 100%;
-            height: 100%;
         }
     </style>
 </head>
@@ -102,6 +143,8 @@
         <form method="POST" action="/logout" style="margin-top: 30px; text-align: center;">
             @csrf
             <button type="submit" class="logout-btn" style="width: 80%; display: inline-block;">
+                <!-- Optional: Add an icon before the text -->
+                <!-- <span style="margin-right:8px;">&#x1F511;</span> -->
                 Log out
             </button>
         </form>
@@ -113,43 +156,57 @@
             <span></span>
         </div>
         <div class="header-title">
-            <span class="main-title">Amaia Scapes Laguna</span><br>
-            <span class="subtitle">PROPERTY LIST</span>
+            <span class="main-title">Contact Us</span><br>
+            <span class="subtitle">GET IN TOUCH</span>
         </div>
     </div>
-    <div class="page-container">
-        <div class="main-content">
-            @for ($i = 0; $i < 6; $i++)
-            <div class="property-card">
-                <div class="card-header">
-                    <div>Property Type</div>
-                    <div>Model</div>
-                    <div>Location</div>
-                    <div>Area</div>
-                    <div>Price</div>
-                    <div>Availability</div>
-                </div>
-                <div class="card-details">
-                    <div>Amaia Laguna</div>
-                    <div>Amaia Lands</div>
-                    <div>Laguna</div>
-                    <div>50sqm</div>
-                    <div>2.2 M</div>
-                    <div class="ready-for-occupancy-2">Ready for Occupancy</div>
-                </div>
-                <div class="action-bar">
-                    <a href="https://www.google.com/maps?q=14.200249003936927,121.11197845300458" target="_blank" class="map-link">
-                        <img src="{{ asset('vectors/vector_1_x2.svg') }}" alt="Map Icon" />
-                        View Property Map
-                    </a>
-                    <a href="https://matchhome.ph/listings/estonia-1720429920" target="_blank" class="details-btn">
-                        View Property Full Details
-                    </a>
-                </div>
+
+    <div class="contact-container">
+        <h1 class="contact-title">Contact Us</h1>
+        @if(session('success'))
+            <div style="background:#d4edda;color:#155724;padding:15px;border-radius:8px;margin-bottom:20px;">
+                {{ session('success') }}
             </div>
-            @endfor
+        @endif
+        @if(
+            $errors->any())
+            <div style="background:#f8d7da;color:#721c24;padding:15px;border-radius:8px;margin-bottom:20px;">
+                <ul style="margin:0;padding-left:20px;">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form class="contact-form" action="{{ route('contact.submit') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+
+        <div class="contact-info">
+            <h3>Other Ways to Reach Us</h3>
+            <p><i class="fas fa-phone"></i> Phone: +63 (2) 8123 4567</p>
+            <p><i class="fas fa-envelope"></i> Email: info@matchhome.ph</p>
+            <p><i class="fas fa-map-marker-alt"></i> Address: Unit 1403 Primeland Bldg. Venture St. Madrigal Business Park, Alabang Muntinlupa City</p>
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var hamburger = document.querySelector('.hamburger-menu');
@@ -207,7 +264,7 @@
                 updateHeaderMargin();
             });
 
-            // avatar upload logic
+            // Avatar upload logic
             var avatarImg = document.getElementById('profile-avatar');
             var avatarInput = document.getElementById('avatar-upload');
             if (avatarImg && avatarInput) {
@@ -227,4 +284,4 @@
         });
     </script>
 </body>
-</html>
+</html> 
